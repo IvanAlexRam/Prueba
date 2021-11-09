@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Domingo_Reto3.Reto3;
+package tutoria.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
@@ -20,27 +20,26 @@ import javax.persistence.Table;
  * @author USUARIO
  */
 @Entity
-@Table(name = "reservation")
-public class Reservaciones implements Serializable  {
-    
-     @Id
+@Table(name ="reservation")
+public class Reservacion implements Serializable {
+       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
     private String status="created";
-    
+           
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonIgnoreProperties("reservations")
-    private Farm farm;
-
+    private Finca farm;
+    
     @ManyToOne
-    @JoinColumn(name = "idClient")
+    @JoinColumn(name = "idCliente")
     @JsonIgnoreProperties({"reservations","messages"})
     private Cliente client;
-
-    private String score; //depende el grupo
+    
+    private String score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -74,11 +73,11 @@ public class Reservaciones implements Serializable  {
         this.status = status;
     }
 
-    public Farm getFarm() {
+    public Finca getFarm() {
         return farm;
     }
 
-    public void setFarm(Farm farm) {
+    public void setFarm(Finca farm) {
         this.farm = farm;
     }
 

@@ -1,5 +1,8 @@
-
-package Domingo_Reto3.Reto3;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package tutoria.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
@@ -8,22 +11,27 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Id;
 
+/**
+ *
+ * @author 
+ */
 @Entity
 @Table(name = "category")
 public class Categoria implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy=GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    
     private String description;
     
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
-    @JsonIgnoreProperties("category")
-    private List<Farm> farms;
+    @JsonIgnoreProperties({"category","message"})
+    private List<Finca> farms;
 
     public Integer getId() {
         return id;
@@ -49,13 +57,18 @@ public class Categoria implements Serializable {
         this.description = description;
     }
 
-    public List<Farm> getFarms() {
+    public List<Finca> getFarms() {
         return farms;
     }
 
-    public void setFarms(List<Farm> farms) {
+    public void setFarms(List<Finca> farms) {
         this.farms = farms;
     }
+    
+    
+    
+    
+    
     
     
     
